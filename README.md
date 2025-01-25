@@ -31,31 +31,6 @@ The Monorepo CI/CD project integrates a frontend, backend, and machine learning 
 
 ---
 
-## Folder Structure
-
-The App is structured as follows:
-
-├── backend # Backend service (Node.js/TypeScript) 
-├── backend-e2e # End-to-end tests for the backend 
-├── deployment # Kubernetes deployment configuration files 
-├── docker-compose.yml # Docker Compose configuration for local orchestration 
-├── Dockerfile # Base Dockerfile for all services 
-├── frontend # Frontend service (React with Vite) 
-├── jest.config.ts # Jest configuration 
-├── jest.preset.js # Jest preset configuration 
-├── ml-service # Machine Learning service (Flask API) 
-├── node_modules # Node.js dependencies 
-├── nx.json # Nx workspace configuration 
-├── package.json # Package manager configuration 
-├── package-lock.json # Lockfile for npm dependencies 
-├── packages # Shared libraries or utilities 
-├── README.md # Documentation 
-├── terraform # Terraform configuration for cloud infrastructure 
-├── tsconfig.base.json # Base TypeScript configuration 
-└── tsconfig.json # Project-specific TypeScript configuration
-
----
-
 
 ## Service Details
 
