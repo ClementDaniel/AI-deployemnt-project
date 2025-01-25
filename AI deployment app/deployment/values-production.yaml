@@ -1,0 +1,4 @@
+namespace: production
+replicas: 5
+image: my-app/backend:latest
+env: production

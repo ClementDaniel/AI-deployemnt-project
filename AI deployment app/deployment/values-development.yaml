@@ -1,0 +1,4 @@
+namespace: development
+replicas: 1
+image: my-app/backend:dev
+env: development

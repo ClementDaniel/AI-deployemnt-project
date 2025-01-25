@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-canary
+  namespace: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: backend
+        version: canary
+    spec:
+      containers:
+      - name: backend
+        image: my-app/backend:canary
+        ports:
+        - containerPort: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-canary-ingress
+  namespace: canary
+spec:
+  rules:
+  - host: canary.myapp.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-canary
+            port:
+              number: 3000

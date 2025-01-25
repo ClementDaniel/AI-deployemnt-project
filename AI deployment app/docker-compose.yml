@@ -1,0 +1,39 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP: frontend
+    ports:
+      - "4200:4200"
+    environment:
+      - PORT=4200
+      - REACT_APP_BACKEND_URL=http://localhost:3000
+    depends_on:
+      - backend  # Ensure backend starts first
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP: backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - ML_SERVICE_URL=http://flask-api:5001  # Point backend to ml-service
+    depends_on:
+      - flask-api  # Ensure ml-service starts first
+
+  flask-api:
+    build:
+      context: ./ml-service
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - FLASK_ENV=development

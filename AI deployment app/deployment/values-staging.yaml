@@ -1,0 +1,4 @@
+namespace: staging
+replicas: 2
+image: my-app/backend:staging
+env: staging
