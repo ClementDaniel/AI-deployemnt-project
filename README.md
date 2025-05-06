@@ -68,7 +68,6 @@ Since this project uses a monorepo, the source files for the frontend and backen
 
 ### Dockerfile
 ```bash
-    # Root Dockerfile
 FROM node:18
 
 WORKDIR /app
@@ -76,21 +75,13 @@ WORKDIR /app
 # Copy the entire monorepo
 COPY . .
 
-# Install root-level dependencies
+# Install root-level dependenci
 RUN npm install
-
-# Build the specified app
 ARG APP
 WORKDIR /app/$APP
-
-# Install app-specific dependencies
 RUN npm install
-
-# Expose the correct port
 ARG PORT
 EXPOSE ${PORT}
-
-# Start the application
 CMD ["npm", "run", "start"]
 
 ```
@@ -140,17 +131,6 @@ services:
       - PORT=5001
       - FLASK_ENV=development
 ```
----
-
-## CI/CD Configuration
-
-The CI/CD pipeline is managed using GitHub Actions. The workflows are designed to:
-
-- Build and test services (backend, frontend, and ML service) using Nx and Docker.
-- Push container images to Docker Hub.
-- Deploy services to Kubernetes clusters in development, staging, canary, and production environments.
-
-The GitHub Actions workflow configuration is located in the `.github/workflows` folder.
 
 ---
 
